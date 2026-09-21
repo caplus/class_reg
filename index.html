@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【平日暮光舒展】南京復興小班瑜珈 - 繳費系統</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; }
+        .font-serif { font-family: 'Noto Serif TC', serif; }
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238B5CF6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1.2rem center;
+            background-size: 1.2em;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-orange-50 via-rose-50 to-purple-100">
+
+    <div class="bg-white/95 backdrop-blur-md rounded-[2rem] shadow-2xl shadow-purple-900/10 w-full max-w-md overflow-hidden relative border border-white" id="app-container">
+        
+        <div class="bg-gradient-to-r from-purple-500 to-rose-400 p-8 text-white text-center relative overflow-hidden">
+            <svg class="w-14 h-14 mx-auto mb-3 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M12 3v2m0 14v2m9-9h-2M5 12H3m14.243 6.243l-1.414-1.414M7.172 7.172L5.757 5.757m12.486 0l-1.414 1.414M7.172 16.828l-1.414 1.414M12 16a4 4 0 100-8 4 4 0 000 8z" />
+            </svg>
+            <h1 class="text-3xl font-serif font-bold mb-2 tracking-wider drop-shadow-sm">暮光舒展</h1>
+            <p class="text-purple-50 text-sm tracking-widest font-medium opacity-90">南京復興小班瑜珈</p>
+        </div>
+
+        <div class="p-8">
+            <div id="step-1" class="block">
+                <p class="text-gray-500 mb-6 text-sm text-center">請選擇您的「稱呼」以查詢繳費資訊 🧘‍♀️</p>
+                <div class="mb-6">
+                    <select id="student-name" class="w-full px-5 py-4 bg-purple-50/50 border border-purple-100 rounded-2xl focus:ring-4 focus:ring-purple-500/20 focus:border-purple-400 outline-none transition-all text-purple-900 text-lg cursor-pointer shadow-inner">
+                        <option value="" disabled selected>載入中，請稍候...</option>
+                    </select>
+                </div>
+                <button id="search-btn" class="w-full bg-purple-600 text-white font-medium py-3.5 px-4 rounded-2xl hover:bg-purple-700 hover:shadow-lg hover:shadow-purple-200 transition-all active:scale-95 text-lg opacity-50 cursor-not-allowed" disabled>
+                    查詢繳費資訊
+                </button>
+                <p id="search-error" class="text-rose-500 text-sm mt-4 hidden text-center bg-rose-50 py-2 rounded-xl"></p>
+            </div>
+
+            <div id="step-2" class="hidden">
+                <div class="bg-gradient-to-br from-purple-50 to-rose-50 p-5 rounded-2xl mb-6 border border-purple-100/50 relative overflow-hidden shadow-sm">
+                    <div class="absolute -top-4 -right-4 p-4 opacity-5 rotate-12">
+                        <svg class="w-24 h-24 text-purple-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 100-16 8 8 0 000 16zm-1-7.586V7h2v4.586l3.293 3.293-1.414 1.414L11 12.414z"/></svg>
+                    </div>
+                    <h2 class="text-lg font-serif font-bold text-purple-900 mb-4 flex items-center">
+                        <span class="w-1 h-5 bg-purple-400 rounded-full mr-2"></span> 您的繳費資訊
+                    </h2>
+                    <div class="space-y-3 text-sm text-gray-600 relative z-10">
+                        <p class="flex justify-between border-b border-purple-100/50 pb-2"><span class="font-medium text-gray-500">稱呼</span> <span id="display-name" class="font-bold text-purple-800 text-base"></span></p>
+                        <p class="flex justify-between border-b border-purple-100/50 pb-2 items-start"><span class="font-medium text-gray-500 whitespace-nowrap mt-1">成班日期</span> <span id="display-dates" class="font-medium text-gray-800 text-right w-3/4 leading-relaxed"></span></p>
+                        <p class="flex justify-between border-b border-purple-100/50 pb-2"><span class="font-medium text-gray-500">計費堂數</span> <span class="font-bold text-purple-800"><span id="display-count"></span> 堂</span></p>
+                    </div>
+                    <div class="mt-4 pt-2 flex justify-between items-end relative z-10">
+                        <span class="text-xs text-gray-400">單堂 499 元</span>
+                        <p class="text-gray-600 font-medium">應繳 <span id="display-amount" class="text-rose-600 text-3xl font-bold font-serif mx-1"></span> 元</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50/80 p-5 rounded-2xl mb-8 border border-gray-100 shadow-sm" id="transfer-info-box">
+                    <h2 class="text-md font-serif font-bold text-gray-700 mb-3 flex items-center">
+                        <span class="w-1 h-5 bg-gray-300 rounded-full mr-2"></span> 轉帳資訊
+                    </h2>
+                    <div class="space-y-2 text-sm">
+                        <p class="text-gray-600 flex justify-between px-1"><span class="font-medium text-gray-500">銀行</span> <span class="font-medium text-gray-800">王道銀行 (048)</span></p>
+                        <div class="text-gray-600 flex items-center justify-between mt-2 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
+                            <div>
+                                <span class="text-xs text-gray-400 block mb-0.5">帳號</span>
+                                <span id="bank-account" class="font-mono font-bold text-gray-800 text-base tracking-wider">01000596431388</span>
+                            </div>
+                            <button id="copy-btn" type="button" class="text-purple-600 text-sm font-medium hover:text-purple-800 bg-purple-50 px-4 py-2.5 rounded-lg transition-colors active:bg-purple-100">
+                                複製
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-md font-serif font-bold text-gray-700 mb-4 flex items-center">
+                    <span class="w-1 h-5 bg-teal-400 rounded-full mr-2"></span> 繳費完成回報
+                </h2>
+                <form id="payment-form">
+                    <div class="mb-4 relative">
+                        <label for="account-last-5" class="block text-sm font-medium text-gray-600 mb-2">轉帳帳號 <span class="text-teal-600">後五碼</span></label>
+                        <input type="text" id="account-last-5" required maxlength="5" pattern="\d{5}" inputmode="numeric" class="w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-400 outline-none transition-all text-xl font-mono placeholder-gray-300 tracking-[0.5em] text-center" placeholder="12345">
+                        <p id="account-error" class="text-rose-500 text-xs mt-2 hidden text-center font-medium">請輸入正確的 5 位數字</p>
+                    </div>
+                    <div class="mb-4">
+                        <label for="transfer-date" class="block text-sm font-medium text-gray-600 mb-2">轉帳日期</label>
+                        <input type="date" id="transfer-date" required class="w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-400 outline-none transition-all text-gray-700 text-center">
+                    </div>
+                    <div class="mb-8">
+                        <label for="remark" class="block text-sm font-medium text-gray-600 mb-2">備註 <span class="text-gray-400 text-xs font-normal">(選填)</span></label>
+                        <input type="text" id="remark" class="w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-400 outline-none transition-all text-gray-700 placeholder-gray-300 text-sm" placeholder="有什麼想告訴我們的嗎？">
+                    </div>
+                    
+                    <p id="submit-error" class="text-rose-500 text-sm mb-4 hidden text-center bg-rose-50 py-2 rounded-xl"></p>
+                    <button type="submit" id="submit-btn" class="w-full bg-teal-600 text-white font-medium py-3.5 px-4 rounded-2xl hover:bg-teal-700 hover:shadow-lg hover:shadow-teal-200 transition-all active:scale-95 text-lg">
+                        確認送出回報
+                    </button>
+                    <button type="button" id="back-btn" class="w-full mt-4 text-gray-400 text-sm hover:text-gray-600 transition-colors py-2">
+                        返回重查
+                    </button>
+                </form>
+            </div>
+
+            <div id="step-3" class="hidden text-center py-10">
+                <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-teal-50 mb-6 relative">
+                    <div class="absolute inset-0 rounded-full border-4 border-teal-100 animate-ping opacity-30"></div>
+                    <svg class="h-10 w-10 text-teal-500 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-serif font-bold text-gray-800 mb-3">回報成功 Namaste</h2>
+                <p class="text-gray-500 mb-8 leading-relaxed text-sm px-4">感謝您的繳費與回報。<br>我們將會盡快核對款項，確認後會通知您。</p>
+                <div class="h-px w-16 bg-gray-200 mx-auto mb-6"></div>
+                <p class="text-xs text-gray-400">期待與您在課堂上相見，<br>如有問題請透過官方 Line 聯繫。</p>
+            </div>
+        </div>
+        
+        <div id="loading-overlay" class="absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center hidden z-50 transition-opacity rounded-[2rem]">
+            <svg class="animate-spin h-12 w-12 text-purple-500 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="text-purple-800 font-medium tracking-widest text-sm" id="loading-text">處理中...</p>
+        </div>
+    </div>
+
+    <script>
+        // ---------------------------------------------------------
+        // ⚠️ 重要步驟：請將您部署 Apps Script 產生的網址貼到這裡 ⚠️
+        // ---------------------------------------------------------
+        const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx3GJzZRLTIVr1CXTKo1HWhRmwUNZ4Xa3zwWX8lYboM0kCn8JWjNgtGZgzUUkghp8Jysg/exec'; 
+        // ---------------------------------------------------------
+
+        let enrollmentData = [];
+        let globalDateCounts = {}; // 用來記錄所有日期的報名總人數
+        
+        const COST_PER_CLASS = 499;
+        let isMockMode = false;
+
+        const ui = {
+            step1: document.getElementById('step-1'),
+            step2: document.getElementById('step-2'),
+            step3: document.getElementById('step-3'),
+            searchBtn: document.getElementById('search-btn'),
+            studentName: document.getElementById('student-name'),
+            searchError: document.getElementById('search-error'),
+            paymentForm: document.getElementById('payment-form'),
+            backBtn: document.getElementById('back-btn'),
+            copyBtn: document.getElementById('copy-btn'),
+            loadingOverlay: document.getElementById('loading-overlay'),
+            loadingText: document.getElementById('loading-text'),
+            accountError: document.getElementById('account-error'),
+            submitError: document.getElementById('submit-error')
+        };
+
+        let currentStudent = null;
+        let currentPaymentInfo = { validDates: [], amount: 0 };
+
+        function showLoading(text = '處理中...') {
+            ui.loadingText.textContent = text;
+            ui.loadingOverlay.classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            ui.loadingOverlay.classList.add('hidden');
+        }
+
+        // 解析日期的共用函數 (只依據逗點或頓號切割，避免被空白切割導致變兩倍)
+        function parseDates(datesString) {
+            if (!datesString || datesString === "未提供日期") return [];
+            return datesString.split(/[,，、]+/).map(d => d.trim()).filter(d => d.length > 0);
+        }
+
+        async function fetchStudentsList() {
+            if (GAS_WEB_APP_URL.includes('YOUR_SCRIPT_ID_HERE')) {
+                ui.studentName.innerHTML = '<option value="" disabled selected>請先設定 GAS 網址</option>';
+                ui.searchError.textContent = '系統尚未連結試算表，請開發者設定 GAS_WEB_APP_URL。';
+                ui.searchError.classList.remove('hidden');
+                return;
+            }
+
+            try {
+                const response = await fetch(GAS_WEB_APP_URL);
+                if (!response.ok) throw new Error('網路回應異常');
+                
+                enrollmentData = await response.json();
+                
+                // 統計每個日期總共有多少人報名
+                globalDateCounts = {};
+                if(enrollmentData && !enrollmentData.error) {
+                    enrollmentData.forEach(student => {
+                        const datesArray = parseDates(student.dates);
+                        datesArray.forEach(d => {
+                            globalDateCounts[d] = (globalDateCounts[d] || 0) + 1;
+                        });
+                    });
+                }
+                
+                ui.studentName.innerHTML = '<option value="" disabled selected>點擊選擇您的稱呼...</option>';
+                
+                if (enrollmentData && enrollmentData.length > 0 && !enrollmentData.error) {
+                    enrollmentData.forEach(student => {
+                        const option = document.createElement('option');
+                        option.value = student.name;
+                        option.textContent = student.name;
+                        ui.studentName.appendChild(option);
+                    });
+                    ui.studentName.disabled = false;
+                    ui.searchBtn.disabled = false;
+                    ui.searchBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                } else {
+                    ui.studentName.innerHTML = '<option value="" disabled selected>試算表內尚無資料</option>';
+                }
+            } catch (error) {
+                console.warn('讀取名單失敗，啟用測試資料模式:', error);
+                isMockMode = true;
+                
+                enrollmentData = [
+                    { name: "王小明 (測試)", dates: "10/07 (一), 10/14 (一), 10/21 (一)" },
+                    { name: "陳小美 (測試)", dates: "10/07 (一), 10/28 (一)" },
+                    { name: "林大華 (測試)", dates: "10/14 (一), 10/28 (一)" }
+                ];
+
+                // 測試資料的全局人數計算
+                globalDateCounts = {};
+                enrollmentData.forEach(student => {
+                    const datesArray = parseDates(student.dates);
+                    datesArray.forEach(d => {
+                        globalDateCounts[d] = (globalDateCounts[d] || 0) + 1;
+                    });
+                });
+                
+                ui.studentName.innerHTML = '<option value="" disabled selected>請選擇稱呼 (測試模式)...</option>';
+                enrollmentData.forEach(student => {
+                    const option = document.createElement('option');
+                    option.value = student.name;
+                    option.textContent = student.name;
+                    ui.studentName.appendChild(option);
+                });
+                ui.studentName.disabled = false;
+                ui.searchBtn.disabled = false;
+                ui.searchBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                
+                ui.searchError.innerHTML = `⚠️ <b>無法連線，目前顯示測試資料。</b><br><span class="text-xs mt-1 block text-amber-700">10/21只有一人報名，選王小明時會看到系統自動扣除該天不收費。</span>`;
+                ui.searchError.classList.remove('hidden', 'text-rose-500', 'bg-rose-50');
+                ui.searchError.classList.add('text-amber-600', 'bg-amber-50', 'text-left', 'px-4');
+            }
+        }
+
+        ui.copyBtn.addEventListener('click', () => {
+            const accountText = document.getElementById('bank-account').textContent;
+            navigator.clipboard.writeText(accountText).then(() => {
+                ui.copyBtn.textContent = '已複製！';
+                ui.copyBtn.classList.replace('text-purple-600', 'text-teal-600');
+                ui.copyBtn.classList.replace('bg-purple-50', 'bg-teal-50');
+                
+                setTimeout(() => {
+                    ui.copyBtn.textContent = '複製';
+                    ui.copyBtn.classList.replace('text-teal-600', 'text-purple-600');
+                    ui.copyBtn.classList.replace('bg-teal-50', 'bg-purple-50');
+                }, 2000);
+            });
+        });
+
+        ui.searchBtn.addEventListener('click', () => {
+            const inputName = ui.studentName.value.trim();
+            ui.searchError.classList.add('hidden');
+
+            if (!inputName) {
+                ui.searchError.textContent = '請先從下拉選單選擇您的稱呼';
+                ui.searchError.classList.remove('hidden');
+                return;
+            }
+
+            showLoading('查詢中...');
+
+            setTimeout(() => {
+                currentStudent = enrollmentData.find(s => s.name === inputName);
+
+                if (currentStudent) {
+                    const allDates = parseDates(currentStudent.dates);
+                    
+                    // 根據全域人數，過濾出 ≥ 2 人的日期
+                    const validDates = allDates.filter(d => globalDateCounts[d] >= 2);
+                    const invalidDates = allDates.filter(d => globalDateCounts[d] < 2);
+                    
+                    const count = validDates.length;
+                    const totalAmount = count * COST_PER_CLASS;
+                    
+                    // 儲存狀態供表單送出用
+                    currentPaymentInfo.validDates = validDates;
+                    currentPaymentInfo.amount = totalAmount;
+
+                    // 處理畫面顯示的字串
+                    let displayStr = validDates.join('、 ');
+                    
+                    if (invalidDates.length > 0) {
+                        displayStr += `<span class="text-xs text-rose-500 block mt-1.5 font-normal">*(未達開班人數已扣除: ${invalidDates.join('、 ')})*</span>`;
+                    }
+                    if (validDates.length === 0 && invalidDates.length > 0) {
+                        displayStr = `<span class="text-rose-500">無達標開課日期</span>` + displayStr;
+                    } else if (validDates.length === 0) {
+                        displayStr = "查無有效日期";
+                    }
+
+                    document.getElementById('display-name').textContent = currentStudent.name;
+                    document.getElementById('display-dates').innerHTML = displayStr;
+                    document.getElementById('display-count').textContent = count;
+                    document.getElementById('display-amount').textContent = totalAmount.toLocaleString();
+                    document.getElementById('transfer-date').valueAsDate = new Date();
+
+                    // 若金額為 0，鎖住送出按鈕與輸入框
+                    const submitBtn = document.getElementById('submit-btn');
+                    if (totalAmount === 0) {
+                        submitBtn.disabled = true;
+                        submitBtn.classList.add('opacity-50', 'cursor-not-allowed', 'bg-gray-400');
+                        submitBtn.classList.remove('bg-teal-600', 'hover:bg-teal-700');
+                        submitBtn.textContent = '無須繳費';
+                        document.getElementById('account-last-5').disabled = true;
+                        document.getElementById('transfer-date').disabled = true;
+                        document.getElementById('remark').disabled = true;
+                        document.getElementById('transfer-info-box').classList.add('opacity-50');
+                    } else {
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-gray-400');
+                        submitBtn.classList.add('bg-teal-600', 'hover:bg-teal-700');
+                        submitBtn.textContent = '確認送出回報';
+                        document.getElementById('account-last-5').disabled = false;
+                        document.getElementById('transfer-date').disabled = false;
+                        document.getElementById('remark').disabled = false;
+                        document.getElementById('transfer-info-box').classList.remove('opacity-50');
+                    }
+
+                    ui.step1.classList.add('hidden');
+                    ui.step2.classList.remove('hidden');
+                } else {
+                    ui.searchError.textContent = '發生錯誤：找不到此學生的資料。';
+                    ui.searchError.classList.remove('hidden');
+                }
+                hideLoading();
+            }, 400);
+        });
+
+        ui.backBtn.addEventListener('click', () => {
+            ui.step2.classList.add('hidden');
+            ui.step1.classList.remove('hidden');
+            currentStudent = null;
+            ui.paymentForm.reset();
+            ui.submitError.classList.add('hidden');
+            ui.accountError.classList.add('hidden');
+        });
+
+        ui.paymentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            ui.submitError.classList.add('hidden');
+            ui.accountError.classList.add('hidden');
+            
+            const last5 = document.getElementById('account-last-5').value;
+            const transferDate = document.getElementById('transfer-date').value;
+            const remarkText = document.getElementById('remark').value;
+
+            if (last5.length !== 5 || !/^\d+$/.test(last5)) {
+                ui.accountError.classList.remove('hidden');
+                return;
+            }
+
+            showLoading('送出回報中...');
+
+            try {
+                const paymentRecord = {
+                    studentName: currentStudent.name,
+                    enrolledDates: currentPaymentInfo.validDates.join(', '), // 只將有效的日期存回系統
+                    calculatedAmount: currentPaymentInfo.amount,
+                    bankAccountLast5: last5,
+                    transferDate: transferDate,
+                    remark: remarkText // 新增備註
+                };
+
+                if (isMockMode) {
+                    await new Promise(resolve => setTimeout(resolve, 800));
+                    ui.step2.classList.add('hidden');
+                    ui.step3.classList.remove('hidden');
+                    return;
+                }
+
+                const response = await fetch(GAS_WEB_APP_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(paymentRecord)
+                });
+                
+                if (!response.ok) throw new Error('伺服器無回應');
+                
+                const result = await response.json();
+                
+                if(result.status === "error") {
+                    throw new Error(result.message);
+                }
+
+                ui.step2.classList.add('hidden');
+                ui.step3.classList.remove('hidden');
+
+            } catch (error) {
+                console.error("Submit Error:", error);
+                ui.submitError.textContent = '送出失敗，請確認已正確部署 Apps Script 或稍後再試。';
+                ui.submitError.classList.remove('hidden');
+            } finally {
+                hideLoading();
+            }
+        });
+
+        fetchStudentsList();
+    </script>
+</body>
+</html>
