@@ -52,12 +52,12 @@
                         <svg class="w-24 h-24 text-purple-900" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 100-16 8 8 0 000 16zm-1-7.586V7h2v4.586l3.293 3.293-1.414 1.414L11 12.414z"/></svg>
                     </div>
                     <h2 class="text-lg font-serif font-bold text-purple-900 mb-4 flex items-center">
-                        <span class="w-1 h-5 bg-purple-400 rounded-full mr-2"></span> 您的繳費資訊
+                        <span class="w-1 h-5 bg-purple-400 rounded-full mr-2"></span> 您的報名資訊
                     </h2>
                     <div class="space-y-3 text-sm text-gray-600 relative z-10">
                         <p class="flex justify-between border-b border-purple-100/50 pb-2"><span class="font-medium text-gray-500">稱呼</span> <span id="display-name" class="font-bold text-purple-800 text-base"></span></p>
-                        <p class="flex justify-between border-b border-purple-100/50 pb-2 items-start"><span class="font-medium text-gray-500 whitespace-nowrap mt-1">成班日期</span> <span id="display-dates" class="font-medium text-gray-800 text-right w-3/4 leading-relaxed"></span></p>
-                        <p class="flex justify-between border-b border-purple-100/50 pb-2"><span class="font-medium text-gray-500">計費堂數</span> <span class="font-bold text-purple-800"><span id="display-count"></span> 堂</span></p>
+                        <p class="flex justify-between border-b border-purple-100/50 pb-2"><span class="font-medium text-gray-500">日期</span> <span id="display-dates" class="font-medium text-gray-800 text-right w-2/3 leading-relaxed"></span></p>
+                        <p class="flex justify-between border-b border-purple-100/50 pb-2"><span class="font-medium text-gray-500">堂數</span> <span class="font-bold text-purple-800"><span id="display-count"></span> 堂</span></p>
                     </div>
                     <div class="mt-4 pt-2 flex justify-between items-end relative z-10">
                         <span class="text-xs text-gray-400">單堂 499 元</span>
@@ -65,7 +65,7 @@
                     </div>
                 </div>
 
-                <div class="bg-gray-50/80 p-5 rounded-2xl mb-8 border border-gray-100 shadow-sm" id="transfer-info-box">
+                <div class="bg-gray-50/80 p-5 rounded-2xl mb-8 border border-gray-100 shadow-sm">
                     <h2 class="text-md font-serif font-bold text-gray-700 mb-3 flex items-center">
                         <span class="w-1 h-5 bg-gray-300 rounded-full mr-2"></span> 轉帳資訊
                     </h2>
@@ -87,18 +87,19 @@
                     <span class="w-1 h-5 bg-teal-400 rounded-full mr-2"></span> 繳費完成回報
                 </h2>
                 <form id="payment-form">
-                    <div class="mb-4 relative">
+                    <div class="mb-5 relative">
                         <label for="account-last-5" class="block text-sm font-medium text-gray-600 mb-2">轉帳帳號 <span class="text-teal-600">後五碼</span></label>
-                        <input type="text" id="account-last-5" required maxlength="5" pattern="\d{5}" inputmode="numeric" class="w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-400 outline-none transition-all text-xl font-mono placeholder-gray-300 tracking-[0.5em] text-center" placeholder="12345">
+                        <input type="text" id="account-last-5" required maxlength="5" pattern="\d{5}" inputmode="numeric" class="w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-400 outline-none transition-all text-xl font-mono placeholder-gray-300 tracking-[0.5em] text-center" placeholder="12345">
                         <p id="account-error" class="text-rose-500 text-xs mt-2 hidden text-center font-medium">請輸入正確的 5 位數字</p>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-5">
                         <label for="transfer-date" class="block text-sm font-medium text-gray-600 mb-2">轉帳日期</label>
-                        <input type="date" id="transfer-date" required class="w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-400 outline-none transition-all text-gray-700 text-center">
+                        <input type="date" id="transfer-date" required class="w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-400 outline-none transition-all text-gray-700 text-center">
                     </div>
+                    
                     <div class="mb-8">
-                        <label for="remark" class="block text-sm font-medium text-gray-600 mb-2">備註 <span class="text-gray-400 text-xs font-normal">(選填)</span></label>
-                        <input type="text" id="remark" class="w-full px-5 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-400 outline-none transition-all text-gray-700 placeholder-gray-300 text-sm" placeholder="有什麼想告訴我們的嗎？">
+                        <label for="student-note" class="block text-sm font-medium text-gray-600 mb-2">備註 <span class="text-gray-400 text-xs font-normal">(選填)</span></label>
+                        <input type="text" id="student-note" class="w-full px-5 py-3.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-teal-500/20 focus:border-teal-400 outline-none transition-all text-gray-700 placeholder-gray-300 text-center" placeholder="如果有其他事項請在此填寫">
                     </div>
                     
                     <p id="submit-error" class="text-rose-500 text-sm mb-4 hidden text-center bg-rose-50 py-2 rounded-xl"></p>
@@ -135,15 +136,9 @@
     </div>
 
     <script>
-        // ---------------------------------------------------------
-        // ⚠️ 重要步驟：請將您部署 Apps Script 產生的網址貼到這裡 ⚠️
-        // ---------------------------------------------------------
         const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx3GJzZRLTIVr1CXTKo1HWhRmwUNZ4Xa3zwWX8lYboM0kCn8JWjNgtGZgzUUkghp8Jysg/exec'; 
-        // ---------------------------------------------------------
 
         let enrollmentData = [];
-        let globalDateCounts = {}; // 用來記錄所有日期的報名總人數
-        
         const COST_PER_CLASS = 499;
         let isMockMode = false;
 
@@ -164,7 +159,6 @@
         };
 
         let currentStudent = null;
-        let currentPaymentInfo = { validDates: [], amount: 0 };
 
         function showLoading(text = '處理中...') {
             ui.loadingText.textContent = text;
@@ -175,10 +169,28 @@
             ui.loadingOverlay.classList.add('hidden');
         }
 
-        // 解析日期的共用函數 (只依據逗點或頓號切割，避免被空白切割導致變兩倍)
-        function parseDates(datesString) {
-            if (!datesString || datesString === "未提供日期") return [];
-            return datesString.split(/[,，、]+/).map(d => d.trim()).filter(d => d.length > 0);
+        // 處理與過濾資料邏輯 (低於2人不上課)
+        function processEnrollmentData(data) {
+            let dateFrequency = {};
+            
+            // 1. 統計所有日期的總報名人數
+            data.forEach(student => {
+                if (student.dates && student.dates !== "未提供日期") {
+                    let dates = student.dates.split(/[,、，]+/).map(d => d.trim()).filter(d => d.length > 0);
+                    dates.forEach(d => {
+                        dateFrequency[d] = (dateFrequency[d] || 0) + 1;
+                    });
+                }
+            });
+
+            // 2. 針對每位學生，過濾掉總人數只有 1 人的日期
+            data.forEach(student => {
+                if (student.dates && student.dates !== "未提供日期") {
+                    let dates = student.dates.split(/[,、，]+/).map(d => d.trim()).filter(d => d.length > 0);
+                    let validDates = dates.filter(d => dateFrequency[d] >= 2);
+                    student.dates = validDates.length > 0 ? validDates.join(', ') : "無須繳費(人數不足)";
+                }
+            });
         }
 
         async function fetchStudentsList() {
@@ -195,20 +207,11 @@
                 
                 enrollmentData = await response.json();
                 
-                // 統計每個日期總共有多少人報名
-                globalDateCounts = {};
-                if(enrollmentData && !enrollmentData.error) {
-                    enrollmentData.forEach(student => {
-                        const datesArray = parseDates(student.dates);
-                        datesArray.forEach(d => {
-                            globalDateCounts[d] = (globalDateCounts[d] || 0) + 1;
-                        });
-                    });
-                }
-                
                 ui.studentName.innerHTML = '<option value="" disabled selected>點擊選擇您的稱呼...</option>';
                 
                 if (enrollmentData && enrollmentData.length > 0 && !enrollmentData.error) {
+                    processEnrollmentData(enrollmentData); // 過濾人數邏輯
+                    
                     enrollmentData.forEach(student => {
                         const option = document.createElement('option');
                         option.value = student.name;
@@ -220,26 +223,20 @@
                     ui.searchBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 } else {
                     ui.studentName.innerHTML = '<option value="" disabled selected>試算表內尚無資料</option>';
+                    if(enrollmentData.error) console.error("GAS Error:", enrollmentData.error);
                 }
             } catch (error) {
                 console.warn('讀取名單失敗，啟用測試資料模式:', error);
                 isMockMode = true;
                 
+                // 測試資料中，10/7 有王小明與林大華(共2人)，所以會保留。11/02 只有陳小美(1人)，會被標記為無須繳費。
                 enrollmentData = [
-                    { name: "王小明 (測試)", dates: "10/07 (一), 10/14 (一), 10/21 (一)" },
-                    { name: "陳小美 (測試)", dates: "10/07 (一), 10/28 (一)" },
-                    { name: "林大華 (測試)", dates: "10/14 (一), 10/28 (一)" }
+                    { name: "王小明 (測試)", dates: "10/7, 11/08, 11/15" },
+                    { name: "陳小美 (測試)", dates: "11/02" }, 
+                    { name: "林大華 (測試)", dates: "10/7, 11/12, 11/19, 11/26" }
                 ];
+                processEnrollmentData(enrollmentData); // 過濾人數邏輯
 
-                // 測試資料的全局人數計算
-                globalDateCounts = {};
-                enrollmentData.forEach(student => {
-                    const datesArray = parseDates(student.dates);
-                    datesArray.forEach(d => {
-                        globalDateCounts[d] = (globalDateCounts[d] || 0) + 1;
-                    });
-                });
-                
                 ui.studentName.innerHTML = '<option value="" disabled selected>請選擇稱呼 (測試模式)...</option>';
                 enrollmentData.forEach(student => {
                     const option = document.createElement('option');
@@ -251,15 +248,24 @@
                 ui.searchBtn.disabled = false;
                 ui.searchBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 
-                ui.searchError.innerHTML = `⚠️ <b>無法連線，目前顯示測試資料。</b><br><span class="text-xs mt-1 block text-amber-700">10/21只有一人報名，選王小明時會看到系統自動扣除該天不收費。</span>`;
+                ui.searchError.innerHTML = `⚠️ <b>無法連線至試算表，目前顯示測試資料。</b>`;
                 ui.searchError.classList.remove('hidden', 'text-rose-500', 'bg-rose-50');
                 ui.searchError.classList.add('text-amber-600', 'bg-amber-50', 'text-left', 'px-4');
             }
         }
 
+        function calculateClassCount(datesString) {
+            // 處理被過濾掉所有課程的情境
+            if (!datesString || datesString === "未提供日期" || datesString === "無須繳費(人數不足)") return 0;
+            // 修正：移除 \s，避免將原本帶空白的時間（如 10/7 18:00）切開導致堂數加倍
+            return datesString.split(/[,、，]+/).filter(d => d.trim().length > 0).length;
+        }
+
         ui.copyBtn.addEventListener('click', () => {
             const accountText = document.getElementById('bank-account').textContent;
+            
             navigator.clipboard.writeText(accountText).then(() => {
+                const originalText = ui.copyBtn.textContent;
                 ui.copyBtn.textContent = '已複製！';
                 ui.copyBtn.classList.replace('text-purple-600', 'text-teal-600');
                 ui.copyBtn.classList.replace('bg-purple-50', 'bg-teal-50');
@@ -269,6 +275,10 @@
                     ui.copyBtn.classList.replace('text-teal-600', 'text-purple-600');
                     ui.copyBtn.classList.replace('bg-teal-50', 'bg-purple-50');
                 }, 2000);
+            }).catch(err => {
+                console.error('複製失敗', err);
+                ui.copyBtn.textContent = '請手動複製';
+                ui.copyBtn.classList.replace('text-purple-600', 'text-rose-600');
             });
         });
 
@@ -288,58 +298,14 @@
                 currentStudent = enrollmentData.find(s => s.name === inputName);
 
                 if (currentStudent) {
-                    const allDates = parseDates(currentStudent.dates);
-                    
-                    // 根據全域人數，過濾出 ≥ 2 人的日期
-                    const validDates = allDates.filter(d => globalDateCounts[d] >= 2);
-                    const invalidDates = allDates.filter(d => globalDateCounts[d] < 2);
-                    
-                    const count = validDates.length;
+                    const count = calculateClassCount(currentStudent.dates);
                     const totalAmount = count * COST_PER_CLASS;
-                    
-                    // 儲存狀態供表單送出用
-                    currentPaymentInfo.validDates = validDates;
-                    currentPaymentInfo.amount = totalAmount;
-
-                    // 處理畫面顯示的字串
-                    let displayStr = validDates.join('、 ');
-                    
-                    if (invalidDates.length > 0) {
-                        displayStr += `<span class="text-xs text-rose-500 block mt-1.5 font-normal">*(未達開班人數已扣除: ${invalidDates.join('、 ')})*</span>`;
-                    }
-                    if (validDates.length === 0 && invalidDates.length > 0) {
-                        displayStr = `<span class="text-rose-500">無達標開課日期</span>` + displayStr;
-                    } else if (validDates.length === 0) {
-                        displayStr = "查無有效日期";
-                    }
 
                     document.getElementById('display-name').textContent = currentStudent.name;
-                    document.getElementById('display-dates').innerHTML = displayStr;
+                    document.getElementById('display-dates').textContent = currentStudent.dates;
                     document.getElementById('display-count').textContent = count;
                     document.getElementById('display-amount').textContent = totalAmount.toLocaleString();
                     document.getElementById('transfer-date').valueAsDate = new Date();
-
-                    // 若金額為 0，鎖住送出按鈕與輸入框
-                    const submitBtn = document.getElementById('submit-btn');
-                    if (totalAmount === 0) {
-                        submitBtn.disabled = true;
-                        submitBtn.classList.add('opacity-50', 'cursor-not-allowed', 'bg-gray-400');
-                        submitBtn.classList.remove('bg-teal-600', 'hover:bg-teal-700');
-                        submitBtn.textContent = '無須繳費';
-                        document.getElementById('account-last-5').disabled = true;
-                        document.getElementById('transfer-date').disabled = true;
-                        document.getElementById('remark').disabled = true;
-                        document.getElementById('transfer-info-box').classList.add('opacity-50');
-                    } else {
-                        submitBtn.disabled = false;
-                        submitBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-gray-400');
-                        submitBtn.classList.add('bg-teal-600', 'hover:bg-teal-700');
-                        submitBtn.textContent = '確認送出回報';
-                        document.getElementById('account-last-5').disabled = false;
-                        document.getElementById('transfer-date').disabled = false;
-                        document.getElementById('remark').disabled = false;
-                        document.getElementById('transfer-info-box').classList.remove('opacity-50');
-                    }
 
                     ui.step1.classList.add('hidden');
                     ui.step2.classList.remove('hidden');
@@ -367,7 +333,8 @@
             
             const last5 = document.getElementById('account-last-5').value;
             const transferDate = document.getElementById('transfer-date').value;
-            const remarkText = document.getElementById('remark').value;
+            // 讀取備註欄位值
+            const studentNote = document.getElementById('student-note').value.trim();
 
             if (last5.length !== 5 || !/^\d+$/.test(last5)) {
                 ui.accountError.classList.remove('hidden');
@@ -379,15 +346,15 @@
             try {
                 const paymentRecord = {
                     studentName: currentStudent.name,
-                    enrolledDates: currentPaymentInfo.validDates.join(', '), // 只將有效的日期存回系統
-                    calculatedAmount: currentPaymentInfo.amount,
+                    enrolledDates: currentStudent.dates,
+                    calculatedAmount: calculateClassCount(currentStudent.dates) * COST_PER_CLASS,
                     bankAccountLast5: last5,
                     transferDate: transferDate,
-                    remark: remarkText // 新增備註
+                    note: studentNote // 加入備註資料
                 };
 
                 if (isMockMode) {
-                    await new Promise(resolve => setTimeout(resolve, 800));
+                    await new Promise(resolve => setTimeout(resolve, 800)); 
                     ui.step2.classList.add('hidden');
                     ui.step3.classList.remove('hidden');
                     return;
@@ -419,6 +386,7 @@
             }
         });
 
+        // 啟動應用程式，自動抓取名單
         fetchStudentsList();
     </script>
 </body>
